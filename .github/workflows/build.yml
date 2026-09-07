@@ -22,7 +22,7 @@ jobs:
         run: pip install pyinstaller
 
       - name: Gerar executavel
-        run: pyinstaller --onefile --console --name surpresa surpresa.py
+        run: pyinstaller --onefile --console --name surpresa negocioMagnifico.py
 
       - name: Salvar executavel
         uses: actions/upload-artifact@v4
