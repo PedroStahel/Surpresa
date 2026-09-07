@@ -1,0 +1,31 @@
+name: Gerar EXE
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-windows:
+    runs-on: windows-latest
+
+    steps:
+      - name: Baixar repositorio
+        uses: actions/checkout@v6
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Instalar PyInstaller
+        run: pip install pyinstaller
+
+      - name: Gerar executavel
+        run: pyinstaller --onefile --console --name surpresa surpresa.py
+
+      - name: Salvar executavel
+        uses: actions/upload-artifact@v4
+        with:
+          name: surpresa-windows
+          path: dist/surpresa.exe
